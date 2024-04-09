@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <>
             <Image source={logoImg} style={headerStyle.logo} />
-            <Text style={headerStyle.title} >You must needdt to do something</Text>
+            <Text style={headerStyle.title} >You must need to do something</Text>
         </>
     );
 }
