@@ -1,33 +1,68 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import appStyle from './App.style';
 import Header from './Components/Header/Header.jsx';
 import Card from './Components/Card/Card.jsx';
 import Footer from './Components/Footer/Footer.jsx';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import DialogInput from 'react-native-dialog-input';
 
 export default function App() {
     const [todoList, setTodoList] = useState([
-        { id: 1, text: "Complete homework", isComplete: true },
-        { id: 2, text: "Walk dog", isComplete: false },
-        { id: 3, text: "Yoga", isComplete: false },
-        { id: 4, text: "Watch TBBT", isComplete: false },
-        { id: 5, text: "Recharge OTT", isComplete: false },
-        { id: 6, text: "Pay rent", isComplete: false },
-        { id: 7, text: "Code a ToDo List", isComplete: false },
-        { id: 8, text: "Make website", isComplete: false },
-        { id: 9, text: "Clean room", isComplete: false },
-        { id: 10, text: "Learn Guitar", isComplete: false },
-        { id: 11, text: "Learn AI", isComplete: false },
-        { id: 12, text: "Learn prompt engineering", isComplete: false },
-        { id: 13, text: "Watch Hanuman", isComplete: false },
-        { id: 14, text: "Take rest", isComplete: false },
+        // { id: 1, text: "Complete homework", isComplete: true },
+        // { id: 2, text: "Walk dog", isComplete: false },
+        // { id: 3, text: "Yoga", isComplete: false },
+        // { id: 4, text: "Watch TBBT", isComplete: false },
+        // { id: 5, text: "Recharge OTT", isComplete: false },
+        // { id: 6, text: "Pay rent", isComplete: false },
+        // { id: 7, text: "Code a ToDo List", isComplete: false },
+        // { id: 8, text: "Make website", isComplete: false },
+        // { id: 9, text: "Clean room", isComplete: false },
+        // { id: 10, text: "Learn Guitar", isComplete: false },
+        // { id: 11, text: "Learn AI", isComplete: false },
+        // { id: 12, text: "Learn prompt engineering", isComplete: false },
+        // { id: 13, text: "Watch Hanuman", isComplete: false },
+        // { id: 14, text: "Take rest", isComplete: false },
     ]);
     const [selectedTab, setSelectedTab] = useState("all");
     const [addTodoDialogueView, setAddTodoDialogueView] = useState(false);
     const scrollViewRef = useRef();
     var id = todoList.length + 1;
+
+    const storeData = async () => {
+        try {
+            await AsyncStorage.setItem(
+                '@2DoList:todo_list',
+                JSON.stringify(todoList),
+            );
+            console.log("Saved");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const retrieveData = async (callback) => {
+        try {
+            const value = await AsyncStorage.getItem('@2DoList:todo_list');
+            if (value !== null) {
+                callback(JSON.parse(value));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        retrieveData((todoList) => {
+            setTodoList(todoList);
+        });
+    }, []);
+
+    useEffect(() => {
+        storeData();
+    }, [todoList]);
+
 
     function updateTodoList(id) {
         setTodoList(todoList.map((todo) => {
