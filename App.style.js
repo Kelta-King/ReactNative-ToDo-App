@@ -11,6 +11,7 @@ export default appStyle = StyleSheet.create({
     },
     body: {
         flex: 20,
+        marginTop: 20,
     },
     footer: {
         flex: 2,

@@ -6,7 +6,7 @@ export default headerStyle = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         color: "#ABABAB"
     }
 });
