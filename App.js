@@ -1,10 +1,11 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import appStyle from './App.style';
 import Header from './Components/Header/Header.jsx';
 import Card from './Components/Card/Card.jsx';
 import Footer from './Components/Footer/Footer.jsx';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import DialogInput from 'react-native-dialog-input';
 
 export default function App() {
     const [todoList, setTodoList] = useState([
@@ -24,6 +25,9 @@ export default function App() {
         { id: 14, text: "Take rest", isComplete: false },
     ]);
     const [selectedTab, setSelectedTab] = useState("all");
+    const [addTodoDialogueView, setAddTodoDialogueView] = useState(false);
+    const scrollViewRef = useRef();
+    var id = todoList.length + 1;
 
     function updateTodoList(id) {
         setTodoList(todoList.map((todo) => {
@@ -65,6 +69,15 @@ export default function App() {
         });
     }
 
+    function addTodo(task) {
+        if (task != undefined && task.trim().length > 0) {
+            setTodoList([...todoList, { id: id++, text: task, isComplete: false }]);
+            setTimeout(() => {
+                scrollViewRef.current.scrollToEnd({ animated: true });
+            }, 300);
+        }
+    }
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={appStyle.container}>
@@ -72,7 +85,7 @@ export default function App() {
                     <Header />
                 </View>
                 <View style={appStyle.body}>
-                    <ScrollView>
+                    <ScrollView ref={scrollViewRef}>
                         {loadTodoList()}
                     </ScrollView>
                 </View>
@@ -83,6 +96,22 @@ export default function App() {
                         onPress={setSelectedTab}
                     />
                 </View>
+                <TouchableOpacity
+                    style={appStyle.addTodoButton}
+                    onPress={() => setAddTodoDialogueView(!addTodoDialogueView)}
+                >
+                    <Text style={appStyle.addTodoButtonText} >+ Add Todo</Text>
+                </TouchableOpacity>
+                <DialogInput isDialogVisible={addTodoDialogueView}
+                    title={"Add Todo"}
+                    message={"Write task to make a Todo"}
+                    placeholder={"Ex: Walk dog..."}
+                    submitInput={(inputText) => {
+                        addTodo(inputText);
+                        setAddTodoDialogueView(false);
+                    }}
+                    closeDialog={() => { setAddTodoDialogueView(false) }}>
+                </DialogInput>
             </SafeAreaView>
         </SafeAreaProvider>
     );

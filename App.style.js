@@ -19,5 +19,22 @@ export default appStyle = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         paddingHorizontal: 20,
+    },
+    addTodoButton: {
+        position: "absolute",
+        bottom: 76,
+        right: 18,
+        backgroundColor: "black",
+        paddingHorizontal: 28,
+        paddingVertical: 14,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1000
+    },
+    addTodoButtonText: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 18,
     }
 });
