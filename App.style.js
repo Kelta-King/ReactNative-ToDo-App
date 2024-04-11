@@ -15,5 +15,9 @@ export default appStyle = StyleSheet.create({
     },
     footer: {
         flex: 2,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 20,
     }
 });

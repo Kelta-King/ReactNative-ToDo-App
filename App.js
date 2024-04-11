@@ -3,6 +3,7 @@ import { Alert, ScrollView, Text, View } from 'react-native';
 import appStyle from './App.style';
 import Header from './Components/Header/Header.jsx';
 import Card from './Components/Card/Card.jsx';
+import Footer from './Components/Footer/Footer.jsx';
 import { useState } from 'react';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         { id: 13, text: "Watch Hanuman", isComplete: false },
         { id: 14, text: "Take rest", isComplete: false },
     ]);
+    const [selectedTab, setSelectedTab] = useState("all");
 
     function updateTodoList(id) {
         setTodoList(todoList.map((todo) => {
@@ -45,6 +47,24 @@ export default function App() {
         ]);
     }
 
+    function loadTodoList() {
+        return todoList.map((todo) => {
+            if (selectedTab === "inProgress") {
+                if (todo.isComplete === false) {
+                    return <Card key={todo.id} todo={todo} onPress={updateTodoList} onLongPress={confirmDelete} />
+                }
+            }
+            else if (selectedTab === "done") {
+                if (todo.isComplete === true) {
+                    return <Card key={todo.id} todo={todo} onPress={updateTodoList} onLongPress={confirmDelete} />
+                }
+            }
+            else {
+                return <Card key={todo.id} todo={todo} onPress={updateTodoList} onLongPress={confirmDelete} />
+            }
+        });
+    }
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={appStyle.container}>
@@ -53,13 +73,15 @@ export default function App() {
                 </View>
                 <View style={appStyle.body}>
                     <ScrollView>
-                        {todoList.map((todo) => {
-                            return <Card key={todo.id} todo={todo} onPress={updateTodoList} onLongPress={confirmDelete} />
-                        })}
+                        {loadTodoList()}
                     </ScrollView>
                 </View>
                 <View style={appStyle.footer}>
-                    <Text>Footer</Text>
+                    <Footer
+                        todoList={todoList}
+                        selectedTab={selectedTab}
+                        onPress={setSelectedTab}
+                    />
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>
