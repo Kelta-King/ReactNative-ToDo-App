@@ -11,13 +11,24 @@ This is a React Native To-Do app that I built to practice and showcase my React 
 The app has a clean and intuitive user interface, making it easy for users to manage their tasks.
 
 ## Screenshots
+- Starting of App
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg" style="height: 200px;">
 
-![To-Do App Starting](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
-![To-Do App All Tasks](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
-![To-Do App mark a task complete](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
-![To-Do App In progress and done task](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
-![To-Do App Add Task Dialogue](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
-![To-Do App Delete task](https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Starting%20Page.jpg)
+- All tasks list
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/All%20Todo.jpg" style="height: 200px;">
+
+- Mark a task complete
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Mark%20completed.jpg" style="height: 200px;">
+
+- Task filters
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Done%20Todo.jpg" style="height: 200px;">
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/In%20progress%20Todo.jpg" style="height: 200px;">
+
+- Add task dialogue
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Add%20Todo.jpg" style="height: 200px;">
+
+- Delete a task
+<img src="https://github.com/Kelta-King/ReactNative-ToDo-App/blob/main/assets/Screenshots/Delete%20Todo.jpg" style="height: 200px;">
 
 ## Code
 
